@@ -1,10 +1,9 @@
 #include "syslog_client.hpp"
 int main() {
     syslog_client client;
+    client.set_file_path("./");
     if (client.init()) {
-        if (client.send_syslog_file_by_udp("./test.cpp")) {
-            std::cout << "send failed num:" << client.get_send_failed_line_num() << std::endl;
-        }
+        client.start_threads();
     }
 
     return 0;
